@@ -32,6 +32,12 @@ class DrawerComponent extends StatelessWidget {
                 onTap: () {
                   Navigator.pushNamed(context, '/login');
                 }
+            ),
+            ListTile(
+              title: const Text('Logout'),
+              onTap: (){
+                // Logout Login
+              },
             )
           ],
         )

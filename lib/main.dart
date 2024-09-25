@@ -25,22 +25,34 @@ class _MyAppState extends State<MyApp> {
   bool _isDarkTheme = false;
 
   @override
+  void initState(){
+    super.initState();
+
+    DateTime current = DateTime.now();
+    if(current.hour >= 6 && current.hour < 18)
+      _isDarkTheme = false;
+    else
+      _isDarkTheme = true;
+  }
+
+  @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      // Set the theme based on the current state
+
       routes: {
-        '/home': (context) => HomeScreen(isDarkTheme: _isDarkTheme, onThemeChange: _toggleTheme),
+        '/': (context) => HomeScreen(isDarkTheme: _isDarkTheme, onThemeChange: _toggleTheme),
         '/profile': (context) => Profile(isDarkTheme: _isDarkTheme, onThemeChange: _toggleTheme),
         '/details': (context) => PropertyDetails(isDarkTheme: _isDarkTheme, onThemeChange: _toggleTheme),
         '/signup': (context) => SignUp(isDarkTheme: _isDarkTheme, onThemeChange: _toggleTheme),
         '/login': (context) => LogIn(isDarkTheme: _isDarkTheme, onThemeChange: _toggleTheme)
       },
       theme: _isDarkTheme ? ThemeData.dark() : ThemeData.light(),
-      home: HomeScreen(
-        isDarkTheme: _isDarkTheme,
-        onThemeChange: _toggleTheme,
-      ),
+      initialRoute: '/',
+      // home: HomeScreen(
+      //   isDarkTheme: _isDarkTheme,
+      //   onThemeChange: _toggleTheme,
+      // ),
     );
   }
 

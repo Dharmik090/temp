@@ -41,12 +41,13 @@ class _LogInState extends State<LogIn> {
 
     QuerySnapshot user = await users.where('username', isEqualTo: _usernameController.text).get();
 
+    // END::
     if(user.docs.isNotEmpty){
       var userData = user.docs.first.data() as Map<String, dynamic>;
       String password = userData['password']; // Extract the email field
 
       if(password == _passwordController.text){
-        Navigator.pushNamed(context,'/home');
+        Navigator.pushNamed(context,'/');
       }
       else{
         setState(() {
